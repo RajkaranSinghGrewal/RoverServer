@@ -7,11 +7,15 @@ import time
 import picamera
 import io
 import subprocess
-import requests
+import serial
      
+
+ser = None
+
 # Create your views here.
 def home(request):
     print("home")
+    ser = serial.Serial("/dev/ttyS0",9600)
     return render(request,'main.html')
 def gen():
     with picamera.PiCamera() as camera:
@@ -28,11 +32,15 @@ def video_feed(request):
     print("video_feed")
     return StreamingHttpResponse(gen(),content_type='multipart/x-mixed-replace; boundary=frame')
 def right(request):
-    response = requests.get('http://10.0.0.25/right')
-    if(response.status_code == 200):
-        print("Success")
-    else:
-        print("Failed")
+    ser.write("/right")
+    response = None
+    try:
+        if(response.status_code == 200):
+            print("Success")
+        else:
+         print("Failed")
+    except Exception as e:
+        print("Error:",e)
     return
 def left(request):
     response = requests.get('http://10.0.0.25/left')
