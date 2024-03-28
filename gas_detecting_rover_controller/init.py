@@ -26,9 +26,9 @@ if __name__ == "__main__":
                 time.sleep(1)
                 response = requests.get('http://10.0.0.25/ip_configure',data=data)
                 print("response:",response.status_code)
-                while response.status_code != 200
-                print("Error:", response.status_code)
-                time.sleep(1)
-                response = requests.get('http://10.0.0.25/ip_configure',data=data)
+                while response.status_code != 200:
+                    print("Error:", response.status_code)
+                    time.sleep(1)
+                    response = requests.get('http://10.0.0.25/ip_configure',data=data)
         except Exception as e:
             print("Error:",e)
