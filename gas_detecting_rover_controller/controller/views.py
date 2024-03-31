@@ -8,14 +8,13 @@ import picamera
 import io
 import subprocess
 import serial
-     
+import json
+import requests     
 
-ser = None
 
 # Create your views here.
 def home(request):
     print("home")
-    ser = serial.Serial("/dev/ttyS0",9600)
     return render(request,'main.html')
 def gen():
     with picamera.PiCamera() as camera:
@@ -32,8 +31,8 @@ def video_feed(request):
     print("video_feed")
     return StreamingHttpResponse(gen(),content_type='multipart/x-mixed-replace; boundary=frame')
 def right(request):
-    ser.write("/right")
-    response = None
+    print("right")
+    response = requests.get('http://10.0.0.25/right')
     try:
         if(response.status_code == 200):
             print("Success")
@@ -43,6 +42,7 @@ def right(request):
         print("Error:",e)
     return
 def left(request):
+    print("left")
     response = requests.get('http://10.0.0.25/left')
     if(response.status_code == 200):
         print("Success")
@@ -50,6 +50,7 @@ def left(request):
         print("Failed")
     return
 def forward(request):
+    print("forward")
     response = requests.get('http://10.0.0.25/forward')
     if(response.status_code == 200):
         print("Success")
@@ -57,6 +58,7 @@ def forward(request):
         print("Failed")
     return
 def backward(request):
+    print("backward")
     response = requests.get('http://10.0.0.25/backward')
     if(response.status_code == 200):
         print("Success")
@@ -64,6 +66,7 @@ def backward(request):
         print("Failed")
     return
 def forward_right(request):
+    print("forward_right")
     response = requests.get('http://10.0.0.25/frward_right')
     if(response.status_code == 200):
         print("Success")
@@ -71,6 +74,7 @@ def forward_right(request):
         print("Failed")
     return
 def forward_left(request):
+    print("forward_left")
     response = requests.get('http://10.0.0.25/frward_left')
     if(response.status_code == 200):
         print("Success")
@@ -78,6 +82,7 @@ def forward_left(request):
         print("Failed")
     return
 def reverse_left(request):
+    print("reverse_left")
     response = requests.get('http://10.0.0.25/reverse_left')
     if(response.status_code == 200):
         print("Success")
@@ -85,6 +90,7 @@ def reverse_left(request):
         print("Failed")
     return
 def reverse_right(request):
+    print("reverse_right")
     response = requests.get('http://10.0.0.25/reverse_right')
     if(response.status_code == 200):
         print("Success")
@@ -92,10 +98,11 @@ def reverse_right(request):
         print("Failed")
     return
 def brake(request):
+    print("brake")
     response = requests.get('http://10.0.0.25/break')
     if(response.status_code == 200):
         print("Success")
     else:
         print("Failed")
     return
-
+            

@@ -1,6 +1,7 @@
 import requests
 import time
 import netifaces
+import os
 
 def get_ip_address(interface='wlan0'):
     try:
@@ -24,11 +25,20 @@ if __name__ == "__main__":
             for i in range(0,5):
                 print(".")
                 time.sleep(1)
+
+            response = requests.get('http://10.0.0.25/ip_configure',data=data)
+            print("response:",response.status_code)
+            while response.status_code != 200:
+                print("Error:", response.status_code)
+                time.sleep(1)
                 response = requests.get('http://10.0.0.25/ip_configure',data=data)
-                print("response:",response.status_code)
-                while response.status_code != 200:
-                    print("Error:", response.status_code)
-                    time.sleep(1)
-                    response = requests.get('http://10.0.0.25/ip_configure',data=data)
+        
         except Exception as e:
-            print("Error:",e)
+            print("Error for connection:",e)
+
+
+
+        try:
+            os.system("python manage.py runserver 0.0.0.0:8000")    
+        except OSError as e:
+            print("Error for subprocess:",e)

@@ -1,69 +1,75 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, intial-scale=1.0, user-scalable=no">
 		<title>Rover Controller</title>
-<style>
-html{
-	font-family: Helvetica;
-	display: inline-block;
-	margin: 0px auto;
-	text-align: center;
-}
-body{
-	margin-top: 50px;
-}
-h1{
-	color: #444444;
-	margin: 50px auto 30px;
-}
-h3{
-	color: #444444;
-	margin-bottom: 50px;
-}
-.button{
-	display:block;
-	width: 80px;
-	background-color: #1abc9c;
-	border: none;
-	color: white;
-	padding: 13 px 30px;
-	text-decoration: none;
-	font-size: 25px;
-	margin: 0px auto 35px;
-	cursor: pointer;
-	border-radius: 4px;
-}
-.button-on{
-	background-color: #16a085;
-}
-.button-on:active{
-	background-color: #16a085;
-}
-.button-off{
-	background-color: #34495e;
-}
-.button-off:active{
-	background-color: #2c3e50;
-}
-p{
-	font-size: 14px;
-	color: #888;
-	margin-bottom: 10px;
-}
-</style>
+		<link rel="stylesheet" href="{% static 'controller/css/main.css' %}">
+<script src="{% static 'controller/js/main.js' %}"></script>
 	</head>
 	<body>
-		<h1>Gas Detecting Rover</h1>
+		<h1 >Gas Detecting Rover</h1>
 		<img class="camera-bg" style="background-attachment:fixed;" id="bg" class="center" src="/controller/video_feed">
-		<a class="button button-on" href="/controller/left">Left</a>
-		<a class="button button-on" href="/controller/right">Right</a>
-		<a class="button button-on" href="/controller/forward">Forward</a>
-		<a class="button button-on" href="/controller/backward">Backward</a>
-		<a class="button button-off" href="/controller/brake">Break</a>
-		<a class="button button-on" href="/controller/forward_right">Forward Right</a>
-		<a class="button button-on" href="/controller/forward_left">Forward Left</a>
-		<a class="button button-on" href="/controller/reverse_right">Reverse Right</a>
-		<a class="button button-on" href="/controller/reverse_left">Reverse Left</a>
+		<div class="main_grid">
+		<div class="grid_container ">
+			<div class="grid_row1">
+
+		<a class="button button-on" onclick="fetch('/controller/forward_left')">Forward Left</a>
+
+		<a class="button button-on" onclick="fetch('/controller/left')">Left</a>
+
+		<a class="button button-on" onclick="fetch('/controller/reverse_left')">Reverse Left</a>
+			</div>
+			<div class="grid_row2">
+<a class="button button-on" onclick="fetch('/controller/forward')">Forward</a>
+
+		<a class="button button-off" onclick="fetch('/controller/brake')">Brake</a>
+
+		<a class="button button-on" onclick="fetch('/controller/backward')">Backward</a>
+			</div>
+			<div class="grid_row3">
+
+		<a class="button button-on" onclick="fetch('/controller/forward_right')">Forward Right</a>
+
+		<a class="button button-on" onclick="fetch('/controller/right')">Right</a>
+
+		<a class="button button-on" onclick="fetch('/controller/reverse_right')">Reverse Right</a>
+			</div>
+
+		
+		</div>
+		<table class="">
+			<thead>
+				<tr>
+					<th>Label</th>
+					<th>Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Temp:</td>
+					<td id="tempValue">0</td>
+				</tr>
+				<tr>
+					<td>Hum:</td>
+					<td id="humValue">0</td>
+				</tr>
+				<tr>
+					<td>voc</td>
+					<td id="vocValue">0</td>
+				</tr>
+				<tr>
+					<td>voc_index_Value:</td>
+					<td id="voc_index_valueValue">0</td>
+				</tr>
+				<tr>
+					<td>adc_raw:</td>
+					<td id="adc_rawValue">0</td>
+				</tr>
+			</tbody>
+		</table></div>
 	</body>
+
 </html>
