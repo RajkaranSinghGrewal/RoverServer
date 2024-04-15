@@ -6,6 +6,7 @@
 	<head>
 		<meta name="viewport" content="width=device-width, intial-scale=1.0, user-scalable=no">
 		<title>Rover Controller</title>
+		<link rel="stylesheet" href="{% static 'controller/css/font.css' %}">
 		<link rel="stylesheet" href="{% static 'controller/css/main.css' %}">
 <script src="{% static 'controller/js/main.js' %}"></script>
 	</head>
@@ -16,26 +17,31 @@
 		<div class="grid_container ">
 			<div class="grid_row1">
 
-		<a class="button button-on" onclick="fetch('/controller/forward_left')">Forward Left</a>
+		<a class="button button-on" onclick="fetch('/controller/forward_left')">&nwarr;</a>
 
-		<a class="button button-on" onclick="fetch('/controller/left')">Left</a>
+		<a class="button button-on" onclick="fetch('/controller/left')">&larr;
+		</a>
 
-		<a class="button button-on" onclick="fetch('/controller/reverse_left')">Reverse Left</a>
+		<a class="button button-on" onclick="fetch('/controller/reverse_left')">&swarr;</a>
 			</div>
 			<div class="grid_row2">
-<a class="button button-on" onclick="fetch('/controller/forward')">Forward</a>
+				<a class="button button-on" onclick="fetch('/controller/forward')">
+				&uarr;	
+				</a>		
 
 		<a class="button button-off" onclick="fetch('/controller/brake')">Brake</a>
 
-		<a class="button button-on" onclick="fetch('/controller/backward')">Backward</a>
+		<a class="button button-on" onclick="fetch('/controller/backward')">&darr;
+		</a>
 			</div>
 			<div class="grid_row3">
 
-		<a class="button button-on" onclick="fetch('/controller/forward_right')">Forward Right</a>
+		<a class="button button-on" onclick="fetch('/controller/forward_right')">&nearr;</a>
 
-		<a class="button button-on" onclick="fetch('/controller/right')">Right</a>
+		<a class="button button-on" onclick="fetch('/controller/right')">&rarr;
+		</a>
 
-		<a class="button button-on" onclick="fetch('/controller/reverse_right')">Reverse Right</a>
+		<a class="button button-on" onclick="fetch('/controller/reverse_right')">&searr;</a>
 			</div>
 
 		
@@ -60,11 +66,7 @@
 					<td>voc</td>
 					<td id="vocValue">0</td>
 				</tr>
-				<tr>
-					<td>voc_index_Value:</td>
-					<td id="voc_index_valueValue">0</td>
-				</tr>
-				<tr>
+			<tr>
 					<td>adc_raw:</td>
 					<td id="adc_rawValue">0</td>
 				</tr>

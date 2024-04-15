@@ -13,4 +13,5 @@ urlpatterns = [
         url(r'^reverse_right/$',views.reverse_right,name='reverse_right'),
         url(r'^reverse_left/$',views.reverse_left,name='reverse_left'),
         url(r'^brake/$',views.brake,name='break'),
+        url(r'^data/$',views.data,name='data'),
         ]

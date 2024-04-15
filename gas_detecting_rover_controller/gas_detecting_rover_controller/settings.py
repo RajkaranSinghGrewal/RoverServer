@@ -50,6 +50,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_NAME = 'my_session_cookie'
+SESSION_COOKIE_AGE = 3600  # Session expiration time in seconds (e.g., 1 hour)
+SESSION_COOKIE_PATH = '/'
+
 ROOT_URLCONF = 'gas_detecting_rover_controller.urls'
 
 TEMPLATES = [
